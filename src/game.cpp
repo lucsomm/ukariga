@@ -17,7 +17,6 @@ ukariga::Game::Gameplay::Gameplay() {
     get_singleton().main_camera.zoom = 1.0f;
 
     auto& player = Player::create();
-
 }
 
 void ukariga::Game::Gameplay::update(const float delta) {
@@ -42,7 +41,7 @@ ukariga::Game::Game() {
     constexpr int screenWidth = 800;
     constexpr int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "Platformer");
+    InitWindow(screenWidth, screenHeight, "Ukariga");
 
     const auto monitor = GetCurrentMonitor();
 
