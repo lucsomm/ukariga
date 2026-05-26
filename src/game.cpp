@@ -5,9 +5,9 @@
 
 #include "raylib.h"
 #include "entity.h"
+#include "player.h"
 
 ukariga::Game::Gameplay::Gameplay() {
-
     constexpr int screenWidth = 800;
     constexpr int screenHeight = 450;
 
@@ -15,6 +15,9 @@ ukariga::Game::Gameplay::Gameplay() {
     get_singleton().main_camera.offset = (Vector2){screenWidth / 2.0f, screenHeight / 2.0f};
     get_singleton().main_camera.rotation = 0.0f;
     get_singleton().main_camera.zoom = 1.0f;
+
+    auto& player = Player::create();
+
 }
 
 void ukariga::Game::Gameplay::update(const float delta) {
