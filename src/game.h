@@ -49,7 +49,7 @@ namespace ukariga {
             return 1. / physics_rate;
         }
 
-        double physics_rate = 60.;
+        double physics_rate = 120.;
     };
 }
 
