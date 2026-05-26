@@ -9,6 +9,7 @@ void ukariga::Player::update_impl(const float delta) {
 
 void ukariga::Player::physics_update_impl(const float delta) {
     state.get_current_state().physics_update(delta);
+    position += velocity * delta;
 }
 
 void ukariga::Player::draw_impl(const glm::vec2 draw_position) {
@@ -24,7 +25,6 @@ void ukariga::Player::Flying::update(const float delta) {
 
 void ukariga::Player::Flying::physics_update(const float delta) {
     player.velocity.x = input_dir.x * FLY_SPEED;
-    player.position += player.velocity * delta;
 }
 
 void ukariga::Player::Flying::draw(const glm::vec2 draw_position) {
