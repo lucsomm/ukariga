@@ -20,7 +20,7 @@ namespace ukariga {
             return game;
         }
 
-        Game();
+        explicit Game();
 
         Game(const Game&) = delete;
 
@@ -34,9 +34,20 @@ namespace ukariga {
 
         void run();
 
+        [[nodiscard]] glm::ivec2 get_window_size() const {
+            return window_size;
+        }
+
+        void set_window_size(int width, int height);
+
+        void set_window_size(const glm::ivec2 size) {
+            set_window_size(size.x, size.y);
+        }
+
         // Start with empty state as to not init camera before window
         StateMachine<State, Gameplay> state_machine;
-        Camera2D main_camera;
+        Camera2D main_camera{};
+
 
     private:
         void update(float delta);
@@ -50,6 +61,7 @@ namespace ukariga {
         }
 
         double physics_rate = 120.;
+        glm::ivec2 window_size{720, 1080};
     };
 }
 

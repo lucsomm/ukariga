@@ -8,11 +8,11 @@
 #include "player.h"
 
 ukariga::Game::Gameplay::Gameplay() {
-    constexpr int screenWidth = 800;
-    constexpr int screenHeight = 450;
+
+    const auto window = get_singleton().get_window_size();
 
     get_singleton().main_camera.target = Vector2{0, 0};
-    get_singleton().main_camera.offset = (Vector2){screenWidth / 2.0f, screenHeight / 2.0f};
+    get_singleton().main_camera.offset = (Vector2){window.x / 2.0f, window.y / 2.0f};
     get_singleton().main_camera.rotation = 0.0f;
     get_singleton().main_camera.zoom = 1.0f;
 
@@ -38,10 +38,7 @@ void ukariga::Game::Gameplay::draw(const float alpha) {
 }
 
 ukariga::Game::Game() {
-    constexpr int screenWidth = 800;
-    constexpr int screenHeight = 450;
-
-    InitWindow(screenWidth, screenHeight, "Ukariga");
+    InitWindow(window_size.x, window_size.y, "Ukariga");
 
     const auto monitor = GetCurrentMonitor();
 
@@ -103,5 +100,10 @@ void ukariga::Game::run() {
 
         draw(static_cast<float>(alpha));
     }
+}
+
+void ukariga::Game::set_window_size(int width, int height) {
+    window_size = {width, height};
+    SetWindowSize(window_size.x, window_size.y);
 }
 
