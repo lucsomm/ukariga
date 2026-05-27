@@ -17,7 +17,7 @@ ukariga::Game::Gameplay::Gameplay() {
 
     auto& player = Player::create();
 
-    PlaySound(LoadSound(RES_PATH"test.wav"));
+    // PlaySound(LoadSound(RES_PATH"test.wav"));
 }
 
 void ukariga::Game::Gameplay::update(const float delta) {
@@ -41,12 +41,7 @@ void ukariga::Game::Gameplay::draw(const float alpha) {
 ukariga::Game::Game() {
     InitWindow(window_size.x, window_size.y, "Ukariga");
 
-    // Prevent flashbangs
-    BeginDrawing();
-    ClearBackground(Color{});
-    EndDrawing();
-
-    InitAudioDevice();
+    // InitAudioDevice();
 
     const auto monitor = GetCurrentMonitor();
 
