@@ -8,8 +8,7 @@
 #include "player.h"
 
 ukariga::Game::Gameplay::Gameplay() {
-
-    const auto window = get_singleton().get_window_size();
+    const auto window = glm::vec2{get_singleton().get_window_size()};
 
     get_singleton().main_camera.target = Vector2{0, 0};
     get_singleton().main_camera.offset = (Vector2){window.x / 2.0f, window.y / 2.0f};
@@ -17,6 +16,10 @@ ukariga::Game::Gameplay::Gameplay() {
     get_singleton().main_camera.zoom = 1.0f;
 
     auto& player = Player::create();
+
+    const auto sound = LoadSound(RES_PATH"test.wav");
+
+    PlaySound(sound);
 }
 
 void ukariga::Game::Gameplay::update(const float delta) {
@@ -39,6 +42,13 @@ void ukariga::Game::Gameplay::draw(const float alpha) {
 
 ukariga::Game::Game() {
     InitWindow(window_size.x, window_size.y, "Ukariga");
+
+    // Prevent flashbangs
+    BeginDrawing();
+    ClearBackground(Color{});
+    EndDrawing();
+
+    InitAudioDevice();
 
     const auto monitor = GetCurrentMonitor();
 
