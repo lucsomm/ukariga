@@ -50,9 +50,7 @@ ukariga::Game::Game() {
         return;
     }
 
-    if (const auto monitor_rate = GetMonitorRefreshRate(monitor); monitor_rate > static_cast<int>(physics_rate)) {
-        SetTargetFPS(monitor_rate);
-    }
+    SetTargetFPS(GetMonitorRefreshRate(monitor));
 }
 
 ukariga::Game::~Game() {
