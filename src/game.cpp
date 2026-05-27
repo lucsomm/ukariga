@@ -17,9 +17,7 @@ ukariga::Game::Gameplay::Gameplay() {
 
     auto& player = Player::create();
 
-    const auto sound = LoadSound(RES_PATH"test.wav");
-
-    PlaySound(sound);
+    PlaySound(LoadSound(RES_PATH"test.wav"));
 }
 
 void ukariga::Game::Gameplay::update(const float delta) {
@@ -53,11 +51,13 @@ ukariga::Game::Game() {
     const auto monitor = GetCurrentMonitor();
 
     if (monitor < 0) {
-        SetTargetFPS(60);
+        SetTargetFPS(static_cast<int>(physics_rate));
         return;
     }
 
-    SetTargetFPS(GetMonitorRefreshRate(monitor));
+    if (const auto monitor_rate = GetMonitorRefreshRate(monitor); monitor_rate > static_cast<int>(physics_rate)) {
+        SetTargetFPS(monitor_rate);
+    }
 }
 
 ukariga::Game::~Game() {
