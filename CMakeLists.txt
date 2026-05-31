@@ -28,7 +28,8 @@ FetchContent_MakeAvailable(glm)
 add_executable(ukariga src/main.cpp
         src/game.cpp
         src/physics.cpp
-        src/player.cpp)
+        src/player.cpp
+        src/bullet_manager.cpp)
 
 target_include_directories(ukariga PRIVATE src)
 target_link_libraries(ukariga PRIVATE raylib glm)

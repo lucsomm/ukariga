@@ -6,9 +6,13 @@
 namespace ukariga {
 class Player : public Entity<Player> {
 public:
+    static constexpr float RADIUS = 64;
+
     void update_impl(float delta);
     void physics_update_impl(float delta);
     void draw_impl(glm::vec2 draw_position);
+
+    void on_hit();
 
 private:
     class Flying final : public State {
@@ -26,7 +30,7 @@ private:
         Player& player;
     };
 
-    glm::vec2 velocity{};
     StateMachine<Flying> state{*this};
+    glm::vec2 velocity{};
 };
 }

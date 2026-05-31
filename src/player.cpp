@@ -16,6 +16,9 @@ void ukariga::Player::draw_impl(const glm::vec2 draw_position) {
     state.get_current_state().draw(draw_position);
 }
 
+void ukariga::Player::on_hit() {
+}
+
 void ukariga::Player::Flying::update(const float delta) {
     input_dir = glm::vec2{
         static_cast<float>(IsKeyDown(KEY_D)) - static_cast<float>(IsKeyDown(KEY_A)),
